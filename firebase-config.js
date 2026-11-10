@@ -25,3 +25,31 @@ window.FIREBASE_CONFIG = {
   appId: "1:527114011645:web:6100a50465562924a24f94",
   measurementId: "G-0G7T944VXS"
 };
+
+// ─────────────────────────────────────────────────────────────────────────
+// LIVE ATTENDANCE (same endpoint + form as Chapter 1; see
+// _deck-builder/ATTENDANCE-SETUP.md).
+//
+// ATTENDANCE_URL is used ONLY by the instructor's "Submit Attendance" press, to
+// mail the roster. It returns only {ok, count} and mails the roster solely to
+// addresses hardcoded in the script, so it discloses no student records.
+// ─────────────────────────────────────────────────────────────────────────
+window.ATTENDANCE_URL = "https://script.google.com/macros/s/AKfycbwnQfV7X52O2TDTcliBkEcEjvTJ3ZzLaFDMEYif8VeU7xQwwTgRUArfju4kBI4CRt0YpA/exec";
+
+// STUDENT SUBMISSIONS go through this Google Form. `spreadMs` staggers each
+// browser's send by a random 0–N ms — do not drop it: a lecture hall shares a
+// handful of NATed campus IPs and a tight burst loses rows to rate limiting.
+// The form must stay PUBLISHED, "Anyone with the link", with email collection
+// and "limit to 1 response" OFF.
+window.ATTENDANCE_FORM = {
+  url: "https://docs.google.com/forms/d/e/1FAIpQLScf80N2r60JQScCWvzfmCwGfSO0JHhkLdgYupGHdxW4ueCTag/formResponse",
+  spreadMs: 6000,
+  fields: {
+    first:   "entry.870053116",
+    last:    "entry.2124478440",
+    email:   "entry.1243640787",
+    section: "entry.2017319722",
+    session: "entry.1949628352",
+    chapter: "entry.1270913812"
+  }
+};
